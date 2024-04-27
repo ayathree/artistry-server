@@ -45,6 +45,15 @@ async function run() {
     const result = await artCollection.find({email:req.params.email}).toArray()
     res.send(result)
 })
+// read allData
+app.get('/arts', async(req,res)=>{
+  const cursor = artCollection.find();
+  const result = await cursor.toArray();
+  res.send(result)
+})
+
+
+
 // update
 app.get('/craftDetails/:id', async(req,res)=>{
   const result = await artCollection.findOne({_id: new ObjectId(req.params.id)})
