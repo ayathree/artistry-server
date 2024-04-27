@@ -1,7 +1,7 @@
 const express = require( 'express');
 const cors = require('cors');
 require('dotenv').config()
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -44,6 +44,30 @@ async function run() {
    
     const result = await artCollection.find({email:req.params.email}).toArray()
     res.send(result)
+})
+// update
+app.get('/craftDetails/:id', async(req,res)=>{
+  const result = await artCollection.findOne({_id: new ObjectId(req.params.id)})
+  res.send(result)
+})
+
+app.put('/updateCraft/:id', async(req,res)=>{
+  const query = {_id: new ObjectId(req.params.id)};
+  const data ={
+    $set:{
+       item_name : req.body.item_name,
+       subcategory_name :req.body.subcategory_name,
+       rating :req.body.rating,
+       short_description:req.body.short_description,
+       price:req.body.price,
+       customization:req.body.customization,
+       processing_time:req.body.processing_time,
+       stockStatus :req.body.stockStatus,
+       image : req.body.image
+    }
+  }
+  const result= await artCollection.updateOne(query,data)
+  res.send(result)
 })
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
