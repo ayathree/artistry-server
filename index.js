@@ -46,6 +46,12 @@ async function run() {
     const result = await artCollection.find({email:req.params.email}).toArray()
     res.send(result)
 })
+// read subCategoryData
+app.get('/artSub/:subcategory_name', async(req,res)=>{
+   
+  const result = await artCollection.find({subcategory_name:req.params.subcategory_name}).toArray()
+  res.send(result)
+})
 // read allData
 app.get('/arts', async(req,res)=>{
   const cursor = artCollection.find();
