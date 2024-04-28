@@ -31,6 +31,7 @@ async function run() {
     // await client.connect();
 
     const artCollection = client.db('artDB').collection('artsItem');
+    const artSubCollection = client.db('artDB').collection('artsSub')
 
 // create
     app.post('/arts',async(req,res)=>{
@@ -48,6 +49,13 @@ async function run() {
 // read allData
 app.get('/arts', async(req,res)=>{
   const cursor = artCollection.find();
+  const result = await cursor.toArray();
+  res.send(result)
+})
+
+// read CategoryData
+app.get('/artSub', async(req,res)=>{
+  const cursor = artSubCollection.find();
   const result = await cursor.toArray();
   res.send(result)
 })
@@ -83,6 +91,7 @@ app.delete('/deleteCraft/:id', async(req,res)=>{
   const result = await artCollection.deleteOne({_id: new ObjectId(req.params.id)})
   res.send(result)
 })
+
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
