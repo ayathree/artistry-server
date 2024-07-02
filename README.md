@@ -18,18 +18,16 @@ A website for Discover Diverse types of paintings.This website  can help to expl
 - A user can login by his/her google account and github account also.
 
 
-# Selected Category
+# Steps to follow after clone
 
-Painting and Drawing
 
-The subcategories for this category are:
-
-- Landscape Painting
-- Portrait Drawing
-- Watercolor Painting
-- Oil Painting
-- Charcoal Sketching
-- Cartoon Drawing
+- Clone the repo
+- cd path/to/your/repo
+- Use npm  to install the project's dependencies listed in package.json  :  npm install
+- If the project requires environment variables, look for a .env.example or similar file, and create a .env file based on it.  :  cp .env.example .env
+- Build the Project :  npm run build
+- Start the application using the start script defined in package.json  :  npm start
+- Running tests helps ensure that everything is set up correctly and the project is working as expected  :  npm test
 
 
 
